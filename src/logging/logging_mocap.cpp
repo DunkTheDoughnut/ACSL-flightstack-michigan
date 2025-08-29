@@ -93,14 +93,14 @@ void MocapData::logInitializeLogging()
   std::string log_base_directory = "./src/flightstack/log/" + current_date + "/" + ControlType::getControllerName();
 
   // Check if the directory exists, and create it if it doesn't
-  if (!std::filesystem::exists(log_base_directory)) {
-    std::filesystem::create_directories(log_base_directory);
+  if (!fs::exists(log_base_directory)) {
+    fs::create_directories(log_base_directory);
   }
 
   // Check if the "mocap" subdirectory exists within the log_base_directory, create it if needed
   std::string mocap_directory = log_base_directory + "/mocap";
-  if (!std::filesystem::exists(mocap_directory)) {
-      std::filesystem::create_directories(mocap_directory);
+  if (!fs::exists(mocap_directory)) {
+      fs::create_directories(mocap_directory);
   }
 
   // Generate the mocap log file name with a timestamp

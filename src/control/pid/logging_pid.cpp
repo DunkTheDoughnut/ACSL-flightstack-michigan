@@ -176,20 +176,20 @@ void LogData_PID::logInitializeLogging()
   std::string log_base_directory = "./src/flightstack/log/" + current_date  + "/" + ControlType::getControllerName();
 
   // Check if the directory exists, and create it if it doesn't
-  if (!std::filesystem::exists(log_base_directory)) {
-    std::filesystem::create_directories(log_base_directory);
+  if (!fs::exists(log_base_directory)) {
+    fs::create_directories(log_base_directory);
   }
 
   // Check if the "logs" subdirectory exists within the log_base_directory, create it if needed
   std::string logs_directory = log_base_directory + "/logs";
-  if (!std::filesystem::exists(logs_directory)) {
-      std::filesystem::create_directories(logs_directory);
+  if (!fs::exists(logs_directory)) {
+      fs::create_directories(logs_directory);
   }
 
   // Check if the "gains" subdirectory exists within the log_base_directory, create it if needed
   std::string gains_directory = log_base_directory + "/gains";
-  if (!std::filesystem::exists(gains_directory)) {
-      std::filesystem::create_directories(gains_directory);
+  if (!fs::exists(gains_directory)) {
+      fs::create_directories(gains_directory);
   }
 
   // Generate the log file name with a timestamp
@@ -232,9 +232,9 @@ void LogData_PID::logInitializeLogging()
   target_ss << gains_directory << "/gains_pid_" << std::put_time(std::localtime(&now_c), "%Y%m%d_%H%M%S") << ".json";
   std::string target_file = target_ss.str();
 
-  if (std::filesystem::exists(source_file)) {
+  if (fs::exists(source_file)) {
     std::cout << "GAINS FILE PRESENT" << std::endl;
-    std::filesystem::copy(source_file, target_file);
+    fs::copy(source_file, target_file);
   } else {
     std::cout << "GAINS FILE NOT PRESENT" << std::endl;
   }
